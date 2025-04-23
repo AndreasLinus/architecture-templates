@@ -25,6 +25,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
 import android.template.ui.theme.MyApplicationTheme
+import android.window.BackEvent
+import androidx.activity.OnBackPressedCallback
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -41,5 +43,21 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    fun customBackHandling() {
+        // Deal with back press
+        val callback = object : OnBackPressedCallback(
+            true // default to enabled
+        ) {
+            override fun handleOnBackPressed() {
+                // ...
+            }
+
+            override fun handleOnBackStarted(backEvent: BackEvent) {
+                // ...
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
     }
 }
